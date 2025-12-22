@@ -29,6 +29,22 @@
       color: #666;
       margin-top: 20px;
     }
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    #toast.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -43,12 +59,17 @@
 
   <div class="hint">Clique sur une phrase pour la copier dans le presse-papiers.</div>
 
+  <div id="toast">✅ Phrase copiée !</div>
+
   <script>
+    const toast = document.getElementById('toast');
+
     document.querySelectorAll('.phrase').forEach(el => {
       el.addEventListener('click', () => {
         navigator.clipboard.writeText(el.textContent);
-        el.style.background = '#dff0d8';
-        setTimeout(() => el.style.background = 'white', 400);
+
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1200);
       });
     });
   </script>
