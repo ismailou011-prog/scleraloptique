@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phrases à copier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .phrase {
+      background: white;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .phrase:hover {
+      background: #eef3ff;
+    }
+    .hint {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Phrases à copier (clic = copier)</h1>
+
+  <div class="phrase">Bonjour, j’espère que tu vas bien.</div>
+  <div class="phrase">Merci pour ton message, je te réponds rapidement.</div>
+  <div class="phrase">Peux-tu me confirmer cela s’il te plaît ?</div>
+  <div class="phrase">Je reviens vers toi dès que possible.</div>
+  <div class="phrase">Bonne journée et à bientôt.</div>
+
+  <div class="hint">Clique sur une phrase pour la copier dans le presse-papiers.</div>
+
+  <script>
+    document.querySelectorAll('.phrase').forEach(el => {
+      el.addEventListener('click', () => {
+        navigator.clipboard.writeText(el.textContent);
+        el.style.background = '#dff0d8';
+        setTimeout(() => el.style.background = 'white', 400);
+      });
+    });
+  </script>
+
+</body>
+</html>
